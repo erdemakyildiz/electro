@@ -1,0 +1,127 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="js/semantic.min.js"></script>
+    <link rel="stylesheet" href="css/semantic.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body {
+            padding: 0;
+            margin:0;
+            background-color: #f5f5f5;
+        }
+
+    </style>
+    <script>
+        $(document).ready(function () {
+
+        });
+
+    </script>
+</head>
+<body>
+
+<div class="ui secondary  menu">
+    <a class="active item">
+        Home
+    </a>
+    <a class="item">
+        Messages
+    </a>
+    <a class="item">
+        Friends
+    </a>
+    <div class="right menu">
+        <div class="item">
+            <div class="ui icon input">
+                <input type="text" placeholder="Search...">
+                <i class="search link icon"></i>
+            </div>
+        </div>
+        <a class="ui item">
+            Logout
+        </a>
+    </div>
+</div>
+
+
+<div class="ui one column centered grid">
+
+    <div class="twelve wide column centered row">
+
+        <div class="column">
+            <div class="ui segment" style="padding: 30px;">
+                <div class="ui two column very relaxed stackable grid">
+
+                    <div class="middle aligned column">
+                        <div class="ui form">
+                            <div class="field">
+                                <label>Username</label>
+                                <div class="ui left icon input">
+                                    <input type="text" placeholder="Username">
+                                    <i class="user icon"></i>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Password</label>
+                                <div class="ui left icon input">
+                                    <input type="password">
+                                    <i class="lock icon"></i>
+                                </div>
+                            </div>
+                            <div class="ui blue submit button">Login</div>
+                        </div>
+                    </div>
+
+                    <div class="column">
+
+                        <h4 class="ui dividing header">Register</h4>
+                        <form class="ui form">
+
+                            <div class="field">
+                                <label>Nick Name</label>
+                                <input type="text" name="nickName" placeholder="Nick Name">
+                            </div>
+
+                            <div class="field">
+                                <label>Mail</label>
+                                <input type="text" name="mail" placeholder="Mail">
+                            </div>
+
+                            <div class="field">
+                                <label>Password</label>
+                                <input type="text" name="password" placeholder="Password">
+                            </div>
+
+                            <div class="field">
+                                <label>Password (Again)</label>
+                                <input type="text" name="passwordAgain" placeholder="Password (Again)">
+                            </div>
+
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" tabindex="0" class="hidden">
+                                    <label>I agree to the Terms and Conditions</label>
+                                </div>
+                            </div>
+
+                            <button class="ui button" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="ui vertical divider">
+                    Or
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
