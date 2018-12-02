@@ -1,0 +1,13 @@
+body {
+    padding: 0;
+    margin:0;
+    background-color: rgba(251, 251, 251, 0.52);
+}
+
+.streak{
+    width: 100% !important;
+    height: auto !important;
+    margin-top:20px !important;
+}
+
+
