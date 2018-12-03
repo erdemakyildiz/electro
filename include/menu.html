@@ -1,9 +1,6 @@
 <div class="ui inverted secondary  menu" style="background-color: #0b0b0b;padding: 5px;">
-    <a class="active item">
-        Yeni Eklenenler
-    </a>
-    <a class="item">
-        En çok Beğenilenler
+    <a class="item" href="index.html">
+        Anasayfa
     </a>
 
     <div class="item">
@@ -14,12 +11,38 @@
     </div>
 
     <div class="right menu">
-        <a class="ui item">
+        <a class="ui item" href="signInOrLogin.html">
             Kayıt Ol
         </a>
 
-        <a class="ui item">
+        <a class="ui item" href="signInOrLogin.html">
             Giriş Yap
         </a>
     </div>
+
+    <div class="right menu user_avatar" style="display: none">
+        <div class="inverted item link">
+            <img class="ui avatar image" src="images/molly.png" style="margin-right: 10px;">
+            <div class="content">
+                <div class="header">Daniel Louise</div>
+            </div>
+        </div>
+    </div>
+
 </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $.getRequestJSON("user/me", undefined, function (data) {
+            $(".right.menu").hide();
+            $(".right.menu.user_avatar").show();
+            $(".right.menu.user_avatar").find(".header").html(data.data.nickName);
+        }, function (data) {
+            console.log("data" + data)
+        })
+
+    });
+
+</script>

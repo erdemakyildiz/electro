@@ -41,7 +41,9 @@
 
                     </div>
 
-                    <div class="ui card streak">
+                    <div id="streak_starter"></div>
+
+                    <div id="base_post" class="ui card streak" style="display: none">
                         <div class="ui top attached progress">
                             <div class="bar" style="background-color: red"></div>
                         </div>
@@ -52,15 +54,15 @@
                                 <div class="column">
 
                                     <div class="ui mini horizontal divided animated list left floated">
-                                        <div class="item">
+                                        <div class="item card_information">
                                             <img class="ui avatar image" src="images/molly.png">
                                             <div class="content">
-                                                <a class="header">Daniel Louise</a>
+                                                <a class="header"></a>
                                             </div>
                                         </div>
                                         <div class="item">
-                                            <div class="content">
-                                                3 Gün Önce Paylaşıldı
+                                            <div class="content card_publish_date">
+
                                             </div>
                                         </div>
                                     </div>
@@ -68,20 +70,14 @@
                                 </div>
                                 <div class="column" style="padding-bottom: 0">
                                     <div class="content">
-                                        <h3>Ceyhunun fail olduğu an !</h3>
+                                        <h3 class="card_title"></h3>
                                     </div>
                                     <div class="ui divider"></div>
 
                                 </div>
 
                                 <div class="column" style="padding-top: 0">
-                                    <div class="description">
-                                        <p>Cute dogs come in a variety of shapes and sizes. Some cute dogs are cute for
-                                            their
-                                            adorable faces, others for their tiny stature, and even others for their
-                                            massive
-                                            size.</p>
-                                        <p>Many people also have their own barometers for what makes a cute dog.</p>
+                                    <div class="description card_content">
                                     </div>
                                 </div>
                             </div>
@@ -89,22 +85,12 @@
 
                         </div>
                         <div class="extra content">
-                            <a><i class="thumbs up outline icon"></i>121 Votes</a>&nbsp;&nbsp;&nbsp;
-                            <a><i class="thumbs down outline icon"></i>123 Votes</a>
+                            <a><i class="thumbs up outline icon"></i><span class="like_count"></span></a>&nbsp;&nbsp;&nbsp;
+                            <a><i class="thumbs down outline icon"></i><span class="disslike_count"></span></a>
 
                         </div>
                     </div>
 
-
-                    <div class="ui card streak" >
-                        <div id="editor" style="height: 200px;border:none">
-                        </div>
-
-                        <div class="extra content">
-                            <button class="ui green right floated button">Gönder</button>
-
-                        </div>
-                    </div>
                 </div>
 
             </div>
@@ -114,7 +100,7 @@
 
         <div class="three wide column" style="height: auto;padding-top: 30px;">
 
-            <button class="ui green button">
+            <button class="ui green button crate_post_button">
                 <i class="icon add"></i>
                 İçerik Ekle
             </button>
@@ -135,15 +121,10 @@
             <div class="ui divider"></div>
             <div class="ui vertical text menu">
                 <div class="header item">Kanallar</div>
-                <a class="active item">
-                    #siyaset
-                </a>
-                <a class="item">
-                    #müzik
-                </a>
-                <a class="item">
-                    #komikHayvanlar
-                </a>
+                <div class="categories">
+
+                </div>
+
             </div>
         </div>
     </div>
@@ -162,5 +143,10 @@
 <script type="application/javascript">
     $(document).ready(function () {
         $("#menu").load("include/menu.html");
+
+        $.get("include/createPost.html", function(data){
+            $("body").append(data);
+        });
+
     });
 </script>

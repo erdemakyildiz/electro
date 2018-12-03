@@ -1,0 +1,104 @@
+
+<div class="ui modal create_post">
+    <div class="ui inverted dimmer">
+        <div class="ui loader"></div>
+    </div>
+
+    <i class="close icon"></i>
+
+    <div class="header">İçerik Ekle</div>
+
+    <div class="content">
+        <div class="ui labeled left fluid icon input">
+            <i class="tags icon"></i>
+            <input type="text" id="category_name" placeholder="Kategori Ekle">
+        </div>
+
+        <br />
+        <div class="ui fluid icon input">
+            <input type="text" id="category_title" placeholder="Başlık">
+        </div>
+
+        <br />
+        <div id="editor" style="height: 200px;">
+        </div>
+
+    </div>
+    <div class="actions">
+        <div class="ui green button" id="create_post">Kaydet</div>
+        <div class="ui red button cancel">Vazgeç</div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        Quill.prototype.getHtml = function() {
+            return this.container.firstChild.innerHTML;
+        };
+
+        var quill = new Quill('#editor', {
+            modules: {
+                toolbar: [
+                    ['bold', 'italic'],
+                    ['link', 'blockquote', 'code-block', 'image'],
+                    [{ list: 'ordered' }, { list: 'bullet' }]
+                ]
+            },
+            placeholder: 'Compose an epic...',
+            theme: 'snow'
+        });
+
+        $("#create_post").click(function (event) {
+            var $loader = $(".create_post").find(".ui.inverted.dimmer");
+            $loader.addClass("active");
+
+            debugger
+            var category = $("#category_name").val();
+            var title = $("#category_title").val();
+            var content = quill.getHtml();
+
+            var data = {
+                categoryName : category,
+                title : title,
+                content : toUTF8Array(content)
+            };
+
+            $.postRequest("streak/create", data, function (data) {
+                $loader.removeClass("active");
+            }, function (data) {
+                $loader.removeClass("active");
+            })
+        })
+    });
+
+    function toUTF8Array(str) {
+        var utf8 = [];
+        for (var i=0; i < str.length; i++) {
+            var charcode = str.charCodeAt(i);
+            if (charcode < 0x80) utf8.push(charcode);
+            else if (charcode < 0x800) {
+                utf8.push(0xc0 | (charcode >> 6),
+                    0x80 | (charcode & 0x3f));
+            }
+            else if (charcode < 0xd800 || charcode >= 0xe000) {
+                utf8.push(0xe0 | (charcode >> 12),
+                    0x80 | ((charcode>>6) & 0x3f),
+                    0x80 | (charcode & 0x3f));
+            }
+            // surrogate pair
+            else {
+                i++;
+                // UTF-16 encodes 0x10000-0x10FFFF by
+                // subtracting 0x10000 and splitting the
+                // 20 bits of 0x0-0xFFFFF into two halves
+                charcode = 0x10000 + (((charcode & 0x3ff)<<10)
+                    | (str.charCodeAt(i) & 0x3ff));
+                utf8.push(0xf0 | (charcode >>18),
+                    0x80 | ((charcode>>12) & 0x3f),
+                    0x80 | ((charcode>>6) & 0x3f),
+                    0x80 | (charcode & 0x3f));
+            }
+        }
+        return utf8;
+    }
+</script>

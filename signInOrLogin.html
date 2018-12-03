@@ -20,10 +20,26 @@
     <div class="twelve wide column centered row">
 
         <div class="column">
+
+            <div class="ui icon message" style="display: none" >
+
+                <i class="exclamation icon"></i>
+                <div class="content">
+                    <div class="header">
+
+                    </div>
+                    <p class="msg"></p>
+                </div>
+
+            </div>
+
             <div class="ui segment" style="padding: 30px;">
+
                 <div class="ui two column very relaxed stackable grid">
 
                     <div class="middle aligned column">
+                        <h4 class="ui dividing header">Giriş Yap</h4>
+
                         <form class="ui form" id="login_form">
                             <div class="field">
                                 <label>Username</label>
@@ -39,43 +55,43 @@
                                     <i class="lock icon"></i>
                                 </div>
                             </div>
-                            <div class="ui blue submit button">Login</div>
+                            <button class="ui green button" type="submit">Giriş</button>
                         </form>
                     </div>
 
                     <div class="column">
 
-                        <h4 class="ui dividing header">Register</h4>
+                        <div class="ui inverted dimmer">
+                            <div class="ui loader"></div>
+                        </div>
+
+                        <h4 class="ui dividing header">Kayıt Ol</h4>
                         <form class="ui form" id="register_form">
 
                             <div class="field">
-                                <label>Nick Name</label>
-                                <input type="text" name="nickName" placeholder="Nick Name">
+                                <label>Kullanıcı Adı</label>
+                                <input type="text" name="nickName" placeholder="Kullanıcı Adı">
                             </div>
 
                             <div class="field">
-                                <label>Mail</label>
-                                <input type="text" name="mail" placeholder="Mail">
+                                <label>E-Posta</label>
+                                <input type="text" name="mail" placeholder="E-Posta">
                             </div>
 
                             <div class="field">
-                                <label>Password</label>
-                                <input type="text" name="password" placeholder="Password">
+                                <label>Parola</label>
+                                <input type="password" name="password" placeholder="Parola">
                             </div>
 
-                            <div class="field">
-                                <label>Password (Again)</label>
-                                <input type="text" name="passwordAgain" placeholder="Password (Again)">
-                            </div>
 
-                            <div class="field">
-                                <div class="ui checkbox">
-                                    <input type="checkbox" tabindex="0" class="hidden" name="terms">
-                                    <label>I agree to the Terms and Conditions</label>
-                                </div>
-                            </div>
+                            <!--<div class="field">-->
+                                <!--<div class="ui checkbox">-->
+                                    <!--<input type="checkbox" tabindex="0" class="hidden" name="terms">-->
+                                    <!--<label>Kullanıcı sözleşmesini onaylıyorum</label>-->
+                                <!--</div>-->
+                            <!--</div>-->
 
-                            <button class="ui button" type="submit">Submit</button>
+                            <button class="ui green button" type="submit">Kayıt Ol</button>
                             <div class="ui error message"></div>
                         </form>
 
@@ -83,7 +99,7 @@
                 </div>
 
                 <div class="ui vertical divider">
-                    Or
+                    ve ya
                 </div>
             </div>
 
