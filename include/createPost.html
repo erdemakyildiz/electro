@@ -52,18 +52,22 @@
             var $loader = $(".create_post").find(".ui.inverted.dimmer");
             $loader.addClass("active");
 
-            debugger
             var category = $("#category_name").val();
             var title = $("#category_title").val();
             var content = quill.getHtml();
 
             var data = {
-                categoryName : category,
+                headlineName : category,
                 title : title,
                 content : toUTF8Array(content)
             };
 
             $.postRequest("streak/create", data, function (data) {
+                $('.ui.modal.create_post').modal().modal('hide');
+                try {
+                    initDataForIndex();
+                }catch (e) {}
+
                 $loader.removeClass("active");
             }, function (data) {
                 $loader.removeClass("active");

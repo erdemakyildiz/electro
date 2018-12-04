@@ -3,12 +3,21 @@ $(document).ready(function () {
         percent: 22
     });
 
+    initDataForIndex();
+});
+
+
+function initDataForIndex() {
+    $(".generated_post").remove();
+    $(".generated_headline").remove();
+
     $.getRequest("streak/streaks","", function (data) {
         for (var i = data.data.length-1; i >= 0; i--){
             var item = data.data[i];
             var $streak = $("#base_post").clone();
 
             $streak.removeAttr("id");
+            $streak.addClass("generated_post");
 
             $streak.find(".card_information .header").html(item.nickName);
             $streak.find(".card_title").html(item.title);
@@ -25,15 +34,15 @@ $(document).ready(function () {
         console.log(data);
     });
 
-    $.getRequest("streak/categories","", function (data) {
+    $.getRequest("streak/headlines","", function (data) {
         var cat = "";
         for (var i = data.data.length-1; i >= 0; i--){
-            cat += "<a class=\"item\">#" + data.data[i] + "</a>";
+            cat += "<a class='item generated_headline'>#" + data.data[i] + "</a>";
         }
 
-        $(".categories").html(cat);
+        $(".headlines").html(cat);
 
     }, function (data) {
         console.log(data);
     });
-});
+}

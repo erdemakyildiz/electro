@@ -1,5 +1,5 @@
 // var serverURL = "http://35.204.247.166:8081/electro/";
-var serverURL = "http://localhost:8081/";
+var serverURL = "http://192.168.1.20:8081/";
 
 $.fn.serializeObject = function () {
     var obj = {};
@@ -18,10 +18,15 @@ $.fn.serializeObject = function () {
 };
 
 function authenticate(username, password, fun, error) {
+    var token = $.cookie('electronToken');
+
     $.ajax({
         type: 'POST',
         url: serverURL + "user/auth",
         data: {id: username, pw: password},
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader ("Authorization", "Bearer " + token);
+        },
         success: function (response) {
             if (fun !== undefined)
                 fun(response);
@@ -37,11 +42,16 @@ function authenticate(username, password, fun, error) {
 
 $.extend({
     getRequest: function (url, data, fun, error) {
+        var token = $.cookie('electronToken');
+
         $.ajax({
             type: 'GET',
             url: serverURL + url,
             data: data,
             contentType: "text/plain; charset=utf-8",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            },
             success: function (data) {
                 if (fun !== undefined)
                     fun(data);
@@ -56,11 +66,16 @@ $.extend({
 
 $.extend({
     getRequestJSON: function (url, data, fun, error) {
+        var token = $.cookie('electronToken');
+
         $.ajax({
             type: 'GET',
             url: serverURL + url,
             data: data,
             contentType: "application/json",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            },
             success: function (data) {
                 if (fun !== undefined)
                     fun(data);
@@ -75,11 +90,16 @@ $.extend({
 
 $.extend({
     postRequest: function (url, data, fun, error) {
+        var token = $.cookie('electronToken');
+
         $.ajax({
             type: 'POST',
             url: serverURL + url,
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data),
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + token);
+            },
             success: function (data) {
                 if (fun !== undefined)
                     fun(data);

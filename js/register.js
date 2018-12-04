@@ -37,6 +37,7 @@ $(document).ready(function () {
                     console.log(response);
                 });
 
+                location.href = "index.html";
                 return false;
             }
 

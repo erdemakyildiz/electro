@@ -10,4 +10,9 @@ body {
     margin-top:20px !important;
 }
 
+.card_content img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
 
